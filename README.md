@@ -34,15 +34,35 @@ The finished code looks like this:
         CI = 'true'
     }
 ```
-![](2022-05-27-12-05-36.png)
+![](img/2022-05-27-12-05-36.png)
 
 ## Following [this](https://tempora-mutantur.github.io/jenkins.io/github_pages_test/doc/tutorials/build-a-multibranch-pipeline-project/#pull-your-updated-jenkinsfile-into-the-other-repository-branches) guide to run docker locally
 
 Click on proceed to and visit http://localhost:3000 to view the page
 
-![](2022-05-27-12-02-35.png)
-![](2022-05-27-11-56-49.png)
-![](2022-05-27-12-02-08.png)
+![](/img/2022-05-27-12-02-35.png)
+![](img/2022-05-27-11-56-49.png)
+![](/img/2022-05-27-12-02-08.png)
 ## Running Jenkins on EC2 / Azure VM
 
 Modify the security group of the Jenkins instance to allow inbound traffic on Port 3000 from your IP address (DO NOT allow traffic from 0.0.0.0/0 for best security practices)
+
+## Optional - Deploy a highly available master node via Cloudformation
+1. Login to AWS console
+2. navigate to `cfn-template-for-jenkins-master-node`
+3. Installation guide
+    -   This template depends on one of our vpc-*azs.yaml templates. Launch Stack `vpc-2azs.yaml`
+    -   Launch Stack via `jenkins2-ha.yaml`
+    -   Click Next to proceed with the next step of the wizard.
+    -   Specify a name and all parameters for the stack.
+    -   Click Next to proceed with the next step of the wizard.
+    -   Click Next to skip the Options step of the wizard.
+    -   Check the I acknowledge that this template might cause AWS CloudFormation to create IAM resources. checkbox.
+    -   Click Create to start the creation of the stack.
+    -   Wait until the stack reaches the state CREATE_COMPLETE
+    -   Grab the URL of the Jenkins master from the Outputs tab of your stack.
+
+
+### Reference
+1. https://templates.cloudonaut.io/en/stable/jenkins/
+
