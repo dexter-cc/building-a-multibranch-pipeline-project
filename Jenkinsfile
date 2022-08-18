@@ -21,6 +21,11 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Dockerise and push') {
+            steps {
+                sh 'dock'
+            }
+        }
         stage('Deliver for development') {
             when {
                 branch 'development' 

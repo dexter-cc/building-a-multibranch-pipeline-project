@@ -66,3 +66,8 @@ Modify the security group of the Jenkins instance to allow inbound traffic on Po
 ### Reference
 1. https://templates.cloudonaut.io/en/stable/jenkins/
 
+
+## Install Jenkins plugin via cli
+
+### Reference
+https://www.jenkins.io/doc/book/managing/plugins/
