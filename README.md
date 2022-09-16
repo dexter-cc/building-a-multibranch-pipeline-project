@@ -85,14 +85,23 @@ Installs a plugin either from a file, an URL, or from update center.
  ```
 ## Steps
 
-1. Navigate to  `Manage jenkins -> Jenkins CLI` 
-2. Generate API token
+
+1. Generate API token
     - click on `user/admin -> configure -> API Token -> Add new Token -> copy`
+
+    - ![](./img/20220916180509.png)  
     - in current directory create a credential file to avoid leaking secrets in logs
     - vi `creds` -> save admin:apitoken in file
+
+2. Navigate to  `Manage jenkins -> Jenkins CLI`
+3. Download jenkins-cli.jar
+4. run blow
+
 ```
-    java -jar jenkins-cli.jar -s http://localhost:8080 -auth @creds install-plugin docker-plugin:1.2.9
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth @creds install-plugin docker-plugin:1.2.9
     
+java -jar jenkins-cli.jar -s https://jenkins-controller.devopsguru.link/ -auth @creds list-plugins > plugins.txt
+
     - auth option uses username:API token to authenticate to Jenkins
     - add safe-restart to install the plugin 
 ```
