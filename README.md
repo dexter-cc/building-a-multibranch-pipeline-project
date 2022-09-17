@@ -94,7 +94,7 @@ Installs a plugin either from a file, an URL, or from update center.
     - vi `creds` -> save admin:apitoken in file
 
 2. Navigate to  `Manage jenkins -> Jenkins CLI`
-3. Download jenkins-cli.jar
+3. Download jenkins-cli.jar or `wget http://jenkins:8080/jnlpJars/jenkins-cli.jar in terminal`
 4. run blow
 
 ```
@@ -102,6 +102,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 -auth @creds install-plugin d
     
 java -jar jenkins-cli.jar -s https://jenkins-controller.devopsguru.link/ -auth @creds list-plugins > plugins.txt
 
+curl -u username:apitoken http://localhost:8080/pluginManager/api/xml\?depth\=1\&xpath\=/\*/\*/shortName\|/\*/\*/version\&wrapper\=plugins | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
     - auth option uses username:API token to authenticate to Jenkins
     - add safe-restart to install the plugin 
 ```
