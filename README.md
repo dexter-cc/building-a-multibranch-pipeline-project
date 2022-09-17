@@ -100,7 +100,7 @@ Installs a plugin either from a file, an URL, or from update center.
 ```
 java -jar jenkins-cli.jar -s http://localhost:8080 -auth @creds install-plugin docker-plugin:1.2.9
     
-java -jar jenkins-cli.jar -s https://jenkins-controller.devopsguru.link/ -auth @creds list-plugins > plugins.txt
+java -jar jenkins-cli.jar -s https://jenkins-controller.devopsguru.link/ -auth @creds list-plugins | awk 'BEGIN {OFS = ":"; ORS = "\n" } {print $1,$NF}'> plugins.txt
 
 curl -u username:apitoken http://localhost:8080/pluginManager/api/xml\?depth\=1\&xpath\=/\*/\*/shortName\|/\*/\*/version\&wrapper\=plugins | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
     - auth option uses username:API token to authenticate to Jenkins
